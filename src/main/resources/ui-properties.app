@@ -1,0 +1,2 @@
+resizable=false
+stage_style=undecorated

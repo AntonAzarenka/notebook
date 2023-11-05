@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane cache="true" cacheHint="SCALE_AND_ROTATE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="Undecorated" styleClass="f" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.azarenka.controller.main.MainWindowController">
+   <children>
+      <BorderPane prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="600.0" prefWidth="198.0" style="-fx-background-color: #47618e;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="118.0" prefWidth="198.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="BOOK" layoutX="14.0" layoutY="83.0" size="23" />
+                        <Label layoutX="51.0" layoutY="53.0" prefHeight="45.0" prefWidth="147.0" text="Notebook">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Button onAction="#openFinanceWindow" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="198.0" stylesheets="@../css/app.css" text="Финансы">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="DOLLAR" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="198.0" stylesheets="@../css/app.css" text="База Данных">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="DATABASE" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="198.0" stylesheets="@../css/app.css" text="Документация">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="FOLDER" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button onMouseClicked="#openPasswordWindow" alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="198.0" stylesheets="@../css/app.css" text="Пароли">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="LOCK" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="198.0" stylesheets="@../css/app.css" text="Настроки">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="GEARS" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <AnchorPane onMouseDragged="#draggedMouse" onMousePressed="#pressedMouse" pickOnBounds="false" prefHeight="30.0" prefWidth="1000.0" style="-fx-background-color: #202d53;" BorderPane.alignment="CENTER">
+               <children>
+                  <FontAwesomeIconView fill="#ece2e2" glyphName="CLOSE" layoutX="977.0" layoutY="19.0" onMouseClicked="#close" size="16" tabSize="5" wrappingWidth="17.31426239013672" AnchorPane.rightAnchor="5.685737609863281">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontAwesomeIconView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </AnchorPane>
+         </top>
+         <center>
+            <ImageView fitHeight="669.0" fitWidth="803.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../image/ai-1.jpg" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>

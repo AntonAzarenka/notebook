@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane cache="true" cacheHint="SCALE_AND_ROTATE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="Undecorated" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.azarenka.controller.finance.FinanceWindowController">
+   <children>
+      <BorderPane prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="600.0" prefWidth="198.0" style="-fx-background-color: #47618e;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="118.0" prefWidth="198.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="BOOK" layoutX="14.0" layoutY="83.0" size="23" />
+                        <Label layoutX="51.0" layoutY="53.0" onMouseClicked="#goHome" prefHeight="45.0" prefWidth="147.0" text="Notebook">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="198.0" stylesheets="@../../css/app.css" text="Финансы">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="DOLLAR" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="198.0" stylesheets="@../../css/app.css" text="База Данных">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="DATABASE" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="198.0" stylesheets="@../../css/app.css" text="Документация">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="FOLDER" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" onMouseClicked="#openPasswordWindow" prefHeight="39.0" prefWidth="198.0" stylesheets="@../../css/app.css" text="Пароли">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="LOCK" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="198.0" stylesheets="@../../css/app.css" text="Настроки">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="#5aa97c" glyphName="GEARS" selectionStart="0" size="18" tabSize="10" wrappingWidth="10.0">
+                           <stroke>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.40909090276920435" startY="0.43181823961662524">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.3897075951099396" green="0.4695594608783722" blue="0.5157894492149353" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </FontAwesomeIconView>
+                     </graphic>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <AnchorPane onMouseDragged="#draggedMouse" onMousePressed="#pressedMouse" pickOnBounds="false" prefHeight="30.0" prefWidth="1000.0" style="-fx-background-color: #202d53;" BorderPane.alignment="CENTER">
+               <children>
+                  <FontAwesomeIconView fill="#ece2e2" glyphName="CLOSE" layoutX="977.0" layoutY="19.0" onMouseClicked="#close" size="16" tabSize="5" wrappingWidth="17.31426239013672" AnchorPane.rightAnchor="5.685737609863281">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontAwesomeIconView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+            </AnchorPane>
+         </top>
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <top>
+                  <AnchorPane prefHeight="254.0" prefWidth="802.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Pane layoutX="39.0" layoutY="121.0" prefHeight="62.0" prefWidth="722.0" style="-fx-background-color: #47618e;" />
+                        <Label layoutX="567.0" layoutY="36.0" prefHeight="43.0" prefWidth="153.0" text="Базы Данных">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <MenuBar layoutX="720.0" layoutY="40.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="43.0" style="-fx-background-color: transparent;">
+                           <menus>
+                              <Menu mnemonicParsing="false">
+                                 <items>
+                                    <MenuItem fx:id="setPassword" mnemonicParsing="false" onAction="#setUpPassword" text="Установить пароль" />
+                                    <MenuItem fx:id="changePassword" mnemonicParsing="false" onAction="#changePassword" text="Сменить пароль" />
+                                    <MenuItem fx:id="hideData" mnemonicParsing="false" onAction="#hideData" text="Скрыть данные" />
+                                    <MenuItem fx:id="closeWindow" mnemonicParsing="false" text="Закрыть окно" />
+                                 </items>
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="BARS" size="25" />
+                                 </graphic>
+                              </Menu>
+                           </menus>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </MenuBar>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <center>
+                  <GridPane accessibleHelp="Создать новую вкладку" prefHeight="441.0" prefWidth="802.0" BorderPane.alignment="CENTER">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.79998779296875" minWidth="0.0" prefWidth="35.60000419616699" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="760.2" minWidth="10.0" prefWidth="725.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.5999755859375" minWidth="0.0" prefWidth="39.39999999999998" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="46.39998588562012" minHeight="27.000008010864256" prefHeight="30.0" />
+                        <RowConstraints maxHeight="46.39998588562012" minHeight="27.000008010864256" prefHeight="28.60001411437988" />
+                        <RowConstraints maxHeight="26.399991989135742" minHeight="7.600014114379881" prefHeight="15.2000244140625" />
+                        <RowConstraints maxHeight="373.59998779296876" minHeight="10.0" prefHeight="355.8000244140625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="79.60001220703128" minHeight="1.199987792968784" prefHeight="16.5999755859375" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <tabs>
+                              <Tab fx:id="dataBases" text="Базы">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </Tab>
+                              <Tab text="Данные подключения">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <GridPane layoutX="-4.0" layoutY="4.0" prefHeight="322.0" prefWidth="728.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="729.9999465942383" minWidth="10.0" prefWidth="708.2" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints maxHeight="107.9999755859375" minHeight="0.0" prefHeight="39.20002212524414" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="322.59999999999997" minHeight="10.0" prefHeight="291.19997787475586" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="46.60001220703123" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <TableView fx:id="expenditureTableView1" editable="true" prefHeight="287.0" prefWidth="446.0" stylesheets="@../../css/app.css" GridPane.rowIndex="1">
+                                                   <columns>
+                                                      <TableColumn fx:id="expenditureNameTableColumn1" prefWidth="211.99997401237488" text="Application" />
+                                                      <TableColumn fx:id="expenditureAmountTableColumn1" prefWidth="259.9999542236328" text="Environment" />
+                                                      <TableColumn fx:id="expenditureDateTableColumn1" prefWidth="224.79998779296875" text="User Name" />
+                                                      <TableColumn prefWidth="75.0" text="Password" />
+                                                      <TableColumn prefWidth="75.0" text="Host" />
+                                                      <TableColumn prefWidth="75.0" text="Comment" />
+                                                   </columns>
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                             </children>
+                                          </GridPane>
+                                          <JFXButton fx:id="addRowButton1" accessibleRole="INCREMENT_BUTTON" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#addRow" prefHeight="26.0" prefWidth="22.0" text=" " textAlignment="CENTER">
+                                             <graphic>
+                                                <FontAwesomeIconView fx:id="addRecord" accessibleHelp="Создать новую вкладку" accessibleRoleDescription="Создать новую вкладку" accessibleText="Создать новую вкладку" glyphName="PLUS" textAlignment="CENTER" />
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </JFXButton>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Подключения">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                        <TextField alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" opacity="0.58" prefHeight="26.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXButton fx:id="addTabButton" accessibleText="asdasdas" graphicTextGap="0.0" prefHeight="26.0" prefWidth="22.0" text=" " textAlignment="RIGHT" GridPane.columnIndex="1">
+                           <effect>
+                              <Shadow />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <FontAwesomeIconView accessibleHelp="Создать новую вкладку" accessibleRoleDescription="Создать новую вкладку" accessibleText="Создать новую вкладку" glyphName="PLUS" textAlignment="CENTER" wrappingWidth="20.62855339050293">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIconView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="addTabButton1" accessibleText="asdasdas" graphicTextGap="0.0" prefHeight="26.0" prefWidth="22.0" text=" " textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <effect>
+                              <Shadow />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <FontAwesomeIconView accessibleHelp="Создать новую вкладку" accessibleRoleDescription="Создать новую вкладку" accessibleText="Создать новую вкладку" glyphName="SEARCH" textAlignment="CENTER" wrappingWidth="20.62855339050293">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </FontAwesomeIconView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </GridPane>
+               </center>
+            </BorderPane>
+         </center>
+      </BorderPane>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>
