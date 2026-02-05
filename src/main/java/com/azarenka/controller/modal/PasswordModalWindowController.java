@@ -2,7 +2,11 @@ package com.azarenka.controller.modal;
 
 import com.azarenka.controller.AbstractController;
 import com.azarenka.service.LockWindowManager;
-import com.azarenka.service.event.EventHandlerProvider;
+import com.azarenka.service.events.EventProvider;
+import com.azarenka.service.events.EventTypeEnum;
+import com.azarenka.service.events.password.ChangePasswordResourceWindowEvent;
+import com.azarenka.service.events.password.ChangePasswordStatusResourceWindowEvent;
+import com.azarenka.service.events.password.PasswordResourceEvent;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +35,20 @@ public class PasswordModalWindowController extends AbstractController {
     @Autowired
     private LockWindowManager lockWindowManager;
     @Autowired
-    private EventHandlerProvider eventProvider;
+    private EventProvider eventProvider;
 
     public void enterPassword() {
         if (lockWindowManager.checkPassword(passwordField.getText())) {
-            eventProvider.getPasswordResourceEvent().setPasswordResourceWindowStatus(false);
-            eventProvider.setChangePasswordEventResourceWindow(true);
+            var resourceEvent = (PasswordResourceEvent) eventProvider.getEvent(EventTypeEnum.PASSWORD_RESOURCE_EVENT);
+            resourceEvent.setPasswordResourceWindowStatus(false);
+            ((ChangePasswordResourceWindowEvent) eventProvider.getEvent(
+                EventTypeEnum.CHANGE_PASSWORD_RESOURCE_WINDOW_EVENT)).set(true);
+            var event = (ChangePasswordStatusResourceWindowEvent) eventProvider.getEvent(
+                EventTypeEnum.CHANGE_PASSW_STATUS_RESOURCE_EVENT);
+            if (event.isBind()) {
+                event.changeStatusEvent();
+                event.unbind();
+            }
             closeWindow();
         } else {
             errorLabel.setText("Неверный пароль. Повторите еще раз.");
@@ -58,7 +70,10 @@ public class PasswordModalWindowController extends AbstractController {
 
     public void closeWindow() {
         resetWindow();
-        eventProvider.changePasswordEventResourceWindowProperty().set(false);
+        var event =
+            (ChangePasswordResourceWindowEvent) eventProvider.getEvent(
+                EventTypeEnum.CHANGE_PASSWORD_RESOURCE_WINDOW_EVENT);
+        event.setChangePasswordEventResourceWindow(false);
         closeWindow(getWindowsProvider().getPasswordModalWindow());
     }
 }

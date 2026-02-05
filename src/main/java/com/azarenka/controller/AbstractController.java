@@ -1,17 +1,22 @@
 package com.azarenka.controller;
 
 import com.azarenka.WindowsProvider;
+import com.azarenka.controller.api.IDataPassword;
+import com.azarenka.controller.api.IHideTableData;
 import com.azarenka.controller.main.MainWindowMediator;
 import com.azarenka.javafx.SceneChanger;
 import com.azarenka.javafx.StageInitializer;
 import com.azarenka.javafx.load.CommonWidget;
-import com.azarenka.service.event.EventHandlerProvider;
+import com.azarenka.service.events.EventProvider;
+import com.azarenka.service.events.EventTypeEnum;
+import com.azarenka.service.events.password.PasswordResourceEvent;
+import com.azarenka.ui.scene.PopupNotification;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * Represents of .. .
@@ -32,9 +37,18 @@ public class AbstractController {
     @Autowired
     private MainWindowMediator mediator;
     @Autowired
-    private EventHandlerProvider eventProvider;
+    private EventProvider eventProvider;
 
-    public EventHandlerProvider getEventProvider() {
+    public void init() {
+        if (this instanceof IDataPassword) {
+
+        }
+        if (this instanceof IHideTableData) {
+
+        }
+    }
+
+    public EventProvider getEventProvider() {
         return eventProvider;
     }
 
@@ -65,16 +79,18 @@ public class AbstractController {
     }
 
     public void openPasswordWindow() {
-       if(!eventProvider.getPasswordResourceEvent().getPasswordResourceWindowStatus() || mediator.isLockPasswordResourceWindow()){
-           sceneChanger.setNewScene(windowsProvider.getPasswordsWindow());
-       }else {
-           eventProvider.getPasswordResourceEvent().passwordResourceWindowStatusProperty().addListener(
-               (observableValue, aBoolean, newValue) -> {
-                   if (!newValue) {
-                       sceneChanger.setNewScene(windowsProvider.getPasswordsWindow());
-                   }
-               });
-       }
+        PasswordResourceEvent event =
+            (PasswordResourceEvent) eventProvider.getEvent(EventTypeEnum.PASSWORD_RESOURCE_EVENT);
+        if (!event.getPasswordResourceWindowStatus() || mediator.isLockPasswordResourceWindow()) {
+            sceneChanger.setNewScene(windowsProvider.getPasswordsWindow());
+        } else {
+            event.passwordResourceWindowStatusProperty().addListener(
+                (observableValue, aBoolean, newValue) -> {
+                    if (!newValue) {
+                        sceneChanger.setNewScene(windowsProvider.getPasswordsWindow());
+                    }
+                });
+        }
     }
 
     public void closeWindow(CommonWidget widget) {

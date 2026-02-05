@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -34,8 +35,8 @@ public class ExpenditureTableManager extends AbstractTableManager<Expenditure> i
 
     private final ObservableList<Expenditure> items = FXCollections.observableArrayList();
 
-    private Map<TableColumn<Expenditure, String>, Function<Expenditure, String>> functionMap = new HashMap<>();
-    private Map<TableColumn<Expenditure, String>, BiConsumer<Expenditure, String>> consumerMap = new HashMap<>();
+    private final Map<TableColumn<Expenditure, String>, Function<Expenditure, String>> functionMap = new HashMap<>();
+    private final Map<TableColumn<Expenditure, String>, BiConsumer<Expenditure, String>> consumerMap = new HashMap<>();
 
     private TableView<Expenditure> table;
     private TableColumn<Expenditure, String> nameColumn;
@@ -81,7 +82,11 @@ public class ExpenditureTableManager extends AbstractTableManager<Expenditure> i
 
     @Override
     public void saveItems() {
+        var saveDataEvent = getSaveDataEvent();
         dataFileLoader.saveData(new ArrayList<>(items));
+        if (Objects.nonNull(saveDataEvent)) {
+            saveDataEvent.changeStatusEvent();
+        }
     }
 
     @Override

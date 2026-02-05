@@ -6,8 +6,6 @@ import com.azarenka.ui.table.impl.ResourcePasswordTableManager;
 import java.util.Objects;
 
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -31,26 +29,28 @@ public class ResourcePasswordTableContextMenu
 
     private final SimpleObjectProperty<ContextMenuInformationHandler<ResourcePassword>> handlerProperty =
         new SimpleObjectProperty<>();
-    private final ObservableList<ResourcePassword> resourcePasswords = FXCollections.observableArrayList();
     private ResourcePasswordTableManager tableManager;
     private TableView<ResourcePassword> table;
     private ContextMenu menu;
 
     @Override
-    @SuppressWarnings("uncheked")
+    @SuppressWarnings("unchecked")
     public TableRow<ResourcePassword> call(TableView<ResourcePassword> resourcePasswordTableView) {
         this.table = resourcePasswordTableView;
         MenuItem add = new MenuItem("Добавить");
         MenuItem paste = new MenuItem("Вставить");
         MenuItem copy = new MenuItem("Копировать");
-        MenuItem removeRow = new MenuItem("Удалить");
+        MenuItem clear = new MenuItem("Очистить");
+        MenuItem removeRow = new MenuItem("Удалить строку");
         add.setOnAction(event -> tableManager.addNewRow());
         paste.setOnAction(
             event -> tableManager.paste(handlerProperty.getValue().getConsumer(),
                 handlerProperty.getValue().getItem()));
         copy.setOnAction(event -> tableManager.copy(handlerProperty.getValue().getValue()));
         removeRow.setOnAction(event -> tableManager.remove(handlerProperty.getValue().getItem()));
-        menu = new ContextMenu(add, copy, paste, removeRow);
+        clear.setOnAction(
+            event -> tableManager.clear(handlerProperty.getValue().getValue(), handlerProperty.getValue().getItem()));
+        menu = new ContextMenu(add, copy, paste, clear, removeRow);
         TableRow<ResourcePassword> row = new TableRow<>();
         row.contextMenuProperty().setValue(menu);
         row.setOnContextMenuRequested(event -> {
@@ -63,7 +63,7 @@ public class ResourcePasswordTableContextMenu
                     .getIntersectedNode().getParent();
                 TableColumn<ResourcePassword, String> tableColumn = table.getTableColumn();
                 handlerProperty.setValue(
-                    new ContextMenuInformationHandler(tableManager.getConsumerMap().get(tableColumn),
+                    new ContextMenuInformationHandler<>(tableManager.getConsumerMap().get(tableColumn),
                         selectedItem, tableColumn.getCellData(selectedItem)));
             }
         });

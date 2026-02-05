@@ -2,13 +2,16 @@ package com.azarenka.controller.modal;
 
 import com.azarenka.controller.AbstractController;
 import com.azarenka.service.LockWindowManager;
-import com.azarenka.service.event.EventHandlerProvider;
+import com.azarenka.service.events.EventProvider;
+import com.azarenka.service.events.EventTypeEnum;
+import com.azarenka.service.events.password.ChangePasswordStatusResourceWindowEvent;
 import com.azarenka.ui.scene.PasswordsWindow;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import javafx.beans.property.Property;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyCode;
@@ -32,7 +35,7 @@ public class NewPasswordWindowController extends AbstractController {
     @Autowired
     private LockWindowManager lockWindowManager;
     @Autowired
-    private EventHandlerProvider eventProvider;
+    private EventProvider eventProvider;
 
     public Label errorLabel;
     public PasswordField newPasswordField;
@@ -56,7 +59,9 @@ public class NewPasswordWindowController extends AbstractController {
         if(validateLengthPassword(newPassword) && validateConfirmField(newPassword, confirmPassword)) {
             lockWindowManager.setExecutableType(PasswordsWindow.class);
             if(lockWindowManager.setPassword(newPassword)) {
-                eventProvider.setChangePasswordStatusOfResourceWindow(!eventProvider.isChangePasswordStatusOfResourceWindow());
+                var event =
+                    (ChangePasswordStatusResourceWindowEvent) eventProvider.getEvent(EventTypeEnum.CHANGE_PASSW_STATUS_RESOURCE_EVENT);
+                event.changeStatusEvent();
                 closeWindow();
             } else {
                 errorLabel.setText("Что-то пошло не так. Обратитесь к разработчику.");

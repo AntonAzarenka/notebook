@@ -3,16 +3,19 @@ package com.azarenka.ui.table.impl;
 import com.azarenka.domain.ResourcePassword;
 import com.azarenka.domain.properties.CommonProperties;
 import com.azarenka.service.api.IFileDataManager;
+import com.azarenka.service.events.SaveDataEvent;
 import com.azarenka.ui.menu.IContextMenu;
 import com.azarenka.ui.menu.ResourcePasswordTableContextMenu;
 import com.azarenka.util.ApplicationUtil;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -38,9 +41,9 @@ public class ResourcePasswordTableManager extends AbstractTableManager<ResourceP
     private static final Logger LOGGER = ApplicationUtil.getLogger();
     private final ObservableList<ResourcePassword> resourcePasswords = FXCollections.observableArrayList();
     private final ObservableList<ResourcePassword> hideResourcePasswords = FXCollections.observableArrayList();
-    private Map<TableColumn<ResourcePassword, String>, Function<ResourcePassword, String>> functionMap =
+    private final Map<TableColumn<ResourcePassword, String>, Function<ResourcePassword, String>> functionMap =
         new HashMap<>();
-    private Map<TableColumn<ResourcePassword, String>, BiConsumer<ResourcePassword, String>> consumerMap =
+    private final Map<TableColumn<ResourcePassword, String>, BiConsumer<ResourcePassword, String>> consumerMap =
         new HashMap<>();
 
     private TableView<ResourcePassword> table;
@@ -83,7 +86,6 @@ public class ResourcePasswordTableManager extends AbstractTableManager<ResourceP
         loadItems();
     }
 
-
     void createDefaultValues() {
         ResourcePassword resourcePassword = new ResourcePassword();
         resourcePassword.setPassword("");
@@ -117,6 +119,7 @@ public class ResourcePasswordTableManager extends AbstractTableManager<ResourceP
         table.setItems(hideResourcePasswords);
     }
 
+    @Override
     public void copy(String value) {
         copyValue(value);
     }
@@ -138,6 +141,17 @@ public class ResourcePasswordTableManager extends AbstractTableManager<ResourceP
         }
         table.refresh();
         refreshData();
+    }
+
+    public void clear(String value, ResourcePassword resourcePassword) {
+        if (!StringUtils.EMPTY.equals(value)) {
+            if (value.equals(resourcePassword.getPassword())) {
+                resourcePassword.setPassword(StringUtils.EMPTY);
+            } else {
+                resourcePassword.setResource(StringUtils.EMPTY);
+            }
+            refreshData();
+        }
     }
 
     public Map<TableColumn<ResourcePassword, String>, BiConsumer<ResourcePassword, String>> getConsumerMap() {
@@ -220,7 +234,11 @@ public class ResourcePasswordTableManager extends AbstractTableManager<ResourceP
 
     @Override
     public void saveItems() {
+        var saveDataEvent = getSaveDataEvent();
         dataFileLoader.saveData(new ArrayList<>(resourcePasswords));
+        if (Objects.nonNull(saveDataEvent)) {
+            saveDataEvent.changeStatusEvent();
+        }
     }
 
     void refreshData() {

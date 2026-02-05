@@ -1,10 +1,13 @@
 package com.azarenka.ui.table.impl;
 
-import com.azarenka.domain.ResourcePassword;
+import com.azarenka.service.events.IEvent;
+import com.azarenka.service.events.SaveDataEvent;
+import com.azarenka.ui.scene.PopupNotification;
 import com.azarenka.ui.table.api.ITableManager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
@@ -13,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.stage.Stage;
 
 /**
  * Represents of .. .
@@ -27,6 +31,7 @@ public abstract class AbstractTableManager<T> implements ITableManager<T> {
 
     private Map<TableColumn<T, String>, Function<T, String>> tableColumnFunctionMap = new HashMap<>();
     private Map<TableColumn<T, String>, BiConsumer<T, String>> tableColumnConsumerMap = new HashMap<>();
+    private IEvent saveDataEvent;
 
     public abstract void createTable();
 
@@ -40,7 +45,15 @@ public abstract class AbstractTableManager<T> implements ITableManager<T> {
 
     abstract void refreshData();
 
-    public void setTableColumnFunctionMap(Map<TableColumn<T, String>, Function<T, String>> tableColumnFunctionMap) {
+    public void setSaveDataEvent(IEvent saveEvent) {
+        this.saveDataEvent = saveEvent;
+    }
+
+    public IEvent getSaveDataEvent() {
+        return saveDataEvent;
+    }
+
+    void setTableColumnFunctionMap(Map<TableColumn<T, String>, Function<T, String>> tableColumnFunctionMap) {
         this.tableColumnFunctionMap = tableColumnFunctionMap;
     }
 
@@ -58,7 +71,7 @@ public abstract class AbstractTableManager<T> implements ITableManager<T> {
         column.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
-    public void copyValue(String value) {
+    void copyValue(String value) {
         Clipboard clipboard = Clipboard.getSystemClipboard();
         ClipboardContent content = new ClipboardContent();
         content.putString(value);
@@ -70,6 +83,9 @@ public abstract class AbstractTableManager<T> implements ITableManager<T> {
             consumer.accept(event.getTableView().getItems().get(event.getTablePosition().getRow()),
                 event.getNewValue());
             saveItems();
+            if (Objects.nonNull(saveDataEvent)) {
+                saveDataEvent.changeStatusEvent();
+            }
         });
     }
 }

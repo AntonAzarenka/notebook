@@ -15,9 +15,9 @@ import java.util.function.BiConsumer;
  */
 public class ContextMenuInformationHandler<T> {
 
-    private BiConsumer<T, String> consumer;
-    private T item;
-    private String value;
+    private final BiConsumer<T, String> consumer;
+    private final T item;
+    private final String value;
 
     public ContextMenuInformationHandler(BiConsumer<T, String> consumer, T item,
                                          String value) {

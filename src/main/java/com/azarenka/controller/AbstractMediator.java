@@ -4,7 +4,8 @@ import com.azarenka.WindowsProvider;
 import com.azarenka.javafx.SceneChanger;
 import com.azarenka.service.LockWindowManager;
 import com.azarenka.service.api.IOptionsManager;
-import com.azarenka.service.event.EventHandlerProvider;
+import com.azarenka.service.events.EventProvider;
+import com.azarenka.service.events.IEventProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,10 +31,10 @@ public class AbstractMediator {
     @Autowired
     private LockWindowManager lockWindowManager;
     @Autowired
-    private EventHandlerProvider eventHandlerProvider;
+    private IEventProvider eventProvider;
 
-    public EventHandlerProvider getEventHandlerProvider() {
-        return eventHandlerProvider;
+    public IEventProvider getEventHandlerProvider() {
+        return eventProvider;
     }
 
     public IOptionsManager getOptionsManager() {

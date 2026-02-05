@@ -2,6 +2,9 @@ package com.azarenka.controller.ressourcepass;
 
 import com.azarenka.controller.AbstractController;
 import com.azarenka.domain.ResourcePassword;
+import com.azarenka.service.events.EventTypeEnum;
+import com.azarenka.service.events.SaveDataEvent;
+import com.azarenka.service.events.password.PasswordResourceEvent;
 import com.azarenka.ui.table.api.ITableManagerFactory;
 import com.azarenka.ui.table.impl.AbstractTableManager;
 import com.azarenka.ui.table.impl.ResourcePasswordTableManager;
@@ -41,7 +44,10 @@ public class PasswordsWindowController extends AbstractController {
     private AbstractTableManager<ResourcePassword> manager;
 
     public void initialize() {
+        super.init();
         manager = tableManagerFactory.createTableManager(ResourcePasswordTableManager.class);
+        manager.setSaveDataEvent(
+            (SaveDataEvent) mediator.getEventHandlerProvider().getEvent(EventTypeEnum.SAVE_DATA_EVENT));
         manager.createTable();
         initMediator();
         mediator.apply();
@@ -65,7 +71,9 @@ public class PasswordsWindowController extends AbstractController {
     }
 
     public void closeWindow() {
-        getEventProvider().getPasswordResourceEvent().setPasswordResourceWindowStatus(true);
+        PasswordResourceEvent event =
+            (PasswordResourceEvent) getEventProvider().getEvent(EventTypeEnum.PASSWORD_RESOURCE_EVENT);
+        event.setPasswordResourceWindowStatus(true);
         getSceneChanger().setNewScene(getWindowsProvider().getMainWindow());
     }
 
